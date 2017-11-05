@@ -40,12 +40,8 @@ export default enhance(({
       <Link to='/new' className='ml1 no-underline black'>
         new
       </Link>
-      {userId &&
-        <div className='flex'>
-          <div className='ml1'>|</div>
-          <Link to='/submit' className='ml1 no-underline black'>submit</Link>
-        </div>
-      }
+      <div className='ml1'>|</div>
+      <Link to='/submit' className='ml1 no-underline black'>submit</Link>
     </div>
     <div className='flex flex-fixed'>
       {userId
