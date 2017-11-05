@@ -1,28 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Link from './Link'
 import {
   graphql,
   gql
 } from 'react-apollo'
 
-class LinkList extends Component {
-  render() {
-    if (this.props.allLinksQuery && this.props.allLinksQuery.loading) {
-      return <div>Loading</div>
-    }
-    if (this.props.allLinksQuery && this.props.allLinksQuery.error) {
-      return <div>Error</div>
-    }
-    const linksToRender = this.props.allLinksQuery.allLinks
-    return (
-      <div>
-        {linksToRender.map(link => (
-          <Link key={link.id} link={link}/>
-        ))}
-      </div>
-    )
+const LinkList = ({ allLinksQuery = {} }) => {
+  if (allLinksQuery.loading) {
+    return <div>Loading</div>;
   }
-}
+
+  if (allLinksQuery.error) {
+    return <div>Error</div>;
+  }
+
+  return (
+    <div>
+      {allLinksQuery.allLinks.map(link => (
+        <Link key={link.id} link={link} />
+      ))}
+    </div>
+  );  
+};
 
 const ALL_LINKS_QUERY = gql`
   query AllLinksQuery {
