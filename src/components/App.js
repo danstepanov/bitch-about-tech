@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Header from './Header'
 import Login from './Login'
 import ComplaintList from './ComplaintList'
-import CreateComplaint from './CreateComplaint'
+import SubmitComplaint from '../pages/SubmitComplaint'
 
 export default () => (
   <div className='center w85'>
@@ -12,7 +12,7 @@ export default () => (
       <Switch>
         <Route exact path='/login' component={Login}/>
         <Route exact path='/' component={ComplaintList}/>
-        <Route exact path='/create' component={CreateComplaint}/>
+        <Route exact path='/submit' component={SubmitComplaint}/>
       </Switch>
     </div>
   </div>

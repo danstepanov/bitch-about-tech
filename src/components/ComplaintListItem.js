@@ -4,6 +4,6 @@ export default ({
   complaint,
 }) => (
   <div>
-    {complaint.description} ({complaint.url})
+    {complaint.title} ({complaint.url})
   </div>
 );

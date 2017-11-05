@@ -17,7 +17,10 @@ const ComplaintList = ({ allComplaintsQuery = {} }) => {
   return (
     <div>
       {allComplaintsQuery.allComplaints.map(complaint => (
-        <ComplaintListItem key={complaint.id} complaint={complaint} />
+        <ComplaintListItem
+          key={complaint.id}
+          complaint={complaint}
+        />
       ))}
     </div>
   );  
@@ -28,8 +31,9 @@ const ALL_ComplaintS_QUERY = gql`
     allComplaints {
       id
       createdAt
-      url
       description
+      title
+      url
     }
   }
 `
