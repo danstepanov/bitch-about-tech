@@ -1,19 +1,24 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom'
-import Header from './Header'
-import Login from './Login'
-import ComplaintList from './ComplaintList'
+import { Route, Switch } from 'react-router-dom';
+import { setDisplayName } from 'recompose';
+import Complaint from '../pages/Complaint';
+import SignIn from '../pages/SignIn';
 import SubmitComplaint from '../pages/SubmitComplaint'
+import ComplaintList from './ComplaintList';
+import Header from './Header';
 
-export default () => (
+const enhance = setDisplayName('App');
+
+export default enhance(() => (
   <div className='center w85'>
     <Header />
     <div className='ph3 pv1 background-gray'>
       <Switch>
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/' component={ComplaintList}/>
-        <Route exact path='/submit' component={SubmitComplaint}/>
+        <Route exact path='/' component={ComplaintList} />
+        <Route exact path='/complaints/:complaintId' component={Complaint} />
+        <Route exact path='/sign-in' component={SignIn} />
+        <Route exact path='/submit' component={SubmitComplaint} />
       </Switch>
     </div>
   </div>
-);
+));

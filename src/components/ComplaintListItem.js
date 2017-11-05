@@ -1,9 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react';
+import { setDisplayName } from 'recompose';
 
-export default ({
+const enhance = setDisplayName('ComplaintListItem');
+
+export default enhance(({
   complaint,
 }) => (
   <div>
     {complaint.title} ({complaint.url})
   </div>
-);
+));

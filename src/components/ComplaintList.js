@@ -1,32 +1,10 @@
-import React from 'react'
-import ComplaintListItem from './ComplaintListItem'
-import {
-  graphql,
-  gql
-} from 'react-apollo'
+import React from 'react';
+import { gql, graphql } from 'react-apollo';
+import { Link } from 'react-router-dom';
+import { compose, setDisplayName } from 'recompose';
+import ComplaintListItem from './ComplaintListItem';
 
-const ComplaintList = ({ allComplaintsQuery = {} }) => {
-  if (allComplaintsQuery.loading) {
-    return <div>Loading</div>;
-  }
-
-  if (allComplaintsQuery.error) {
-    return <div>Error</div>;
-  }
-
-  return (
-    <div>
-      {allComplaintsQuery.allComplaints.map(complaint => (
-        <ComplaintListItem
-          key={complaint.id}
-          complaint={complaint}
-        />
-      ))}
-    </div>
-  );  
-};
-
-const ALL_ComplaintS_QUERY = gql`
+const AllComplaintsQuery = gql`
   query AllComplaintsQuery {
     allComplaints {
       id
@@ -38,7 +16,34 @@ const ALL_ComplaintS_QUERY = gql`
   }
 `
 
-export default graphql(
-  ALL_ComplaintS_QUERY,
-  { name: 'allComplaintsQuery' }
-)(ComplaintList)
+const enhance = compose(
+  setDisplayName('ComplaintList'),
+  graphql(AllComplaintsQuery, {
+    name: 'allComplaintsQuery',
+  }),
+);
+
+export default enhance(({
+  allComplaintsQuery = {},
+}) => {
+  if (allComplaintsQuery.loading) {
+    return <div>Loading</div>;
+  }
+
+  if (allComplaintsQuery.error) {
+    return <div>Error</div>;
+  }
+
+  return (
+    <div>
+      {allComplaintsQuery.allComplaints.map(complaint => (
+        <Link
+          key={complaint.id}
+          to={`/complaints/${complaint.id}`}
+        >
+          <ComplaintListItem complaint={complaint} />
+        </Link>
+      ))}
+    </div>
+  );  
+});
