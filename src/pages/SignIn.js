@@ -1,8 +1,56 @@
-import React, { Component } from 'react'
-import { gql, graphql, compose } from 'react-apollo'
-import { LOCALSTORAGE_KEY_USER_ID, LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN } from '../constants'
+import React, { Component } from 'react';
+import { compose, gql, graphql } from 'react-apollo';
+import {
+  LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN,
+  LOCALSTORAGE_KEY_USER_ID,
+} from '../constants';
 
-class Login extends Component {
+const CreateUserMutation = gql`
+  mutation CreateUserMutation($name: String!, $email: String!, $password: String!) {
+    createUser(
+      name: $name,
+      authProvider: {
+        email: {
+          email: $email,
+          password: $password
+        }
+      }
+    ) {
+      id
+    }
+
+    signinUser(email: {
+      email: $email,
+      password: $password
+    }) {
+      token
+      user {
+        id
+      }
+    }
+  }
+`;
+
+const SignInUserMutation = gql`
+  mutation SigninUserMutation($email: String!, $password: String!) {
+    signinUser(email: {
+      email: $email,
+      password: $password
+    }) {
+      token
+      user {
+        id
+      }
+    }
+  }
+`;
+
+const enhance = compose(
+  graphql(CreateUserMutation, { name: 'createUserMutation' }),
+  graphql(SignInUserMutation, { name: 'signinUserMutation' }),
+);
+
+class SignInPage extends Component {
   state = {
     login: true,
     email: '',
@@ -57,7 +105,7 @@ class Login extends Component {
   _confirm = async () => {
     const { name, email, password } = this.state
     if (this.state.login) {
-      const result = await this.props.SigninUserMutation({
+      const result = await this.props.signinUserMutation({
         variables: {
           email,
           password
@@ -67,7 +115,7 @@ class Login extends Component {
       const token = result.data.signinUser.token
       this._saveUserData(id, token)
     } else {
-      const result = await this.props.CreateUserMutation({
+      const result = await this.props.createUserMutation({
         variables: {
           name,
           email,
@@ -85,49 +133,6 @@ class Login extends Component {
     localStorage.setItem(LOCALSTORAGE_KEY_USER_ID, id)
     localStorage.setItem(LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN, token)
   }
-}
+};
 
-const CREATE_USER_MUTATION = gql`
-  mutation CreateUserMutation($name: String!, $email: String!, $password: String!) {
-    createUser(
-      name: $name,
-      authProvider: {
-        email: {
-          email: $email,
-          password: $password
-        }
-      }
-    ) {
-      id
-    }
-
-    signinUser(email: {
-      email: $email,
-      password: $password
-    }) {
-      token
-      user {
-        id
-      }
-    }
-  }
-`
-
-const SIGNIN_USER_MUTATION = gql`
-  mutation SigninUserMutation($email: String!, $password: String!) {
-    signinUser(email: {
-      email: $email,
-      password: $password
-    }) {
-      token
-      user {
-        id
-      }
-    }
-  }
-`
-
-export default compose(
-  graphql(CREATE_USER_MUTATION, { name: 'CreateUserMutation' }),
-  graphql(SIGNIN_USER_MUTATION, { name: 'SigninUserMutation' })
-)(Login)
+export default enhance(SignInPage);
