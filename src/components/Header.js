@@ -34,8 +34,12 @@ export default enhance(({
 }) => (
   <div className='flex pa1 justify-between nowrap orange'>
     <div className='flex flex-fixed black'>
-      <div className='fw7 mr1'>Bitch About Tech</div>
-      <Link to='/' className='ml1 no-underline black'>new</Link>
+      <Link to='/' className='ml1 no-underline black'>
+        <div className='fw7 mr1'>Bitch About Tech</div>
+      </Link>
+      <Link to='/new' className='ml1 no-underline black'>
+        new
+      </Link>
       {userId &&
         <div className='flex'>
           <div className='ml1'>|</div>
@@ -46,8 +50,7 @@ export default enhance(({
     <div className='flex flex-fixed'>
       {userId
         ? <div className='ml1 pointer black' onClick={signOut}>sign out</div>
-        : <Link to='/sign-in' className='ml1 no-underline black'>sign in</Link>
-      }
+        : <Link to='/sign-in' className='ml1 no-underline black'>sign in</Link>}
     </div>
   </div>
 ));
