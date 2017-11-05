@@ -9,7 +9,7 @@ import {
 import App from './components/App'
 import registerServiceWorker from './registerServiceWorker'
 import './styles/index.css'
-import { GC_AUTH_TOKEN } from './constants'
+import { LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN } from './constants'
 
 
 const networkInterface = createNetworkInterface({
@@ -21,7 +21,7 @@ networkInterface.use([{
     if (!req.options.headers) {
       req.options.headers = {}
     }
-    const token = localStorage.getItem(GC_AUTH_TOKEN)
+    const token = localStorage.getItem(LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN)
     req.options.headers.authorization = token ? `Bearer ${token}` : null
     next()
   }

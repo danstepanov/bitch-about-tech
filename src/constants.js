@@ -1,2 +1,2 @@
-export const GC_USER_ID = 'graphcool-user-id'
-export const GC_AUTH_TOKEN = 'graphcool-auth-token'
+export const LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN = 'authentication-token'
+export const LOCALSTORAGE_KEY_USER_ID = 'user-id';

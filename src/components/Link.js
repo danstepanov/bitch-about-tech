@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { GC_USER_ID } from '../constants'
+import { LOCALSTORAGE_KEY_USER_ID } from '../constants'
 import { timeDifferenceForDate } from '../utils'
 
 export default class Link extends Component {
   render() {
-    const userId = localStorage.getItem(GC_USER_ID)
+    const userId = localStorage.getItem(LOCALSTORAGE_KEY_USER_ID)
     return (
       <div className='flex mt2 items-start'>
         <div className='flex items-center'>

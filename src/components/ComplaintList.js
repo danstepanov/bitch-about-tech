@@ -1,5 +1,5 @@
 import React from 'react'
-import Complaint from './Complaint'
+import ComplaintListItem from './ComplaintListItem'
 import {
   graphql,
   gql
@@ -17,7 +17,7 @@ const ComplaintList = ({ allComplaintsQuery = {} }) => {
   return (
     <div>
       {allComplaintsQuery.allComplaints.map(complaint => (
-        <Complaint key={complaint.id} complaint={complaint} />
+        <ComplaintListItem key={complaint.id} complaint={complaint} />
       ))}
     </div>
   );  

@@ -3,7 +3,7 @@ import {
   graphql,
   gql
 } from 'react-apollo'
-import { GC_USER_ID } from '../constants'
+import { LOCALSTORAGE_KEY_USER_ID } from '../constants'
 
 class CreateComplaint extends Component {
   state = {
@@ -40,7 +40,7 @@ class CreateComplaint extends Component {
   }
 
   _createComplaint = async () => {
-    const postedById = localStorage.getItem(GC_USER_ID)
+    const postedById = localStorage.getItem(LOCALSTORAGE_KEY_USER_ID)
     if (!postedById) {
       console.error('No user logged in')
       return

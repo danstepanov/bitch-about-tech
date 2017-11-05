@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { gql, graphql, compose } from 'react-apollo'
-import { GC_USER_ID, GC_AUTH_TOKEN } from '../constants'
+import { LOCALSTORAGE_KEY_USER_ID, LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN } from '../constants'
 
 class Login extends Component {
   state = {
@@ -82,8 +82,8 @@ class Login extends Component {
   }
 
   _saveUserData = (id, token) => {
-    localStorage.setItem(GC_USER_ID, id)
-    localStorage.setItem(GC_AUTH_TOKEN, token)
+    localStorage.setItem(LOCALSTORAGE_KEY_USER_ID, id)
+    localStorage.setItem(LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN, token)
   }
 }
 
