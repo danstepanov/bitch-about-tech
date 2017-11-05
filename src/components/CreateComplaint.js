@@ -5,7 +5,7 @@ import {
 } from 'react-apollo'
 import { GC_USER_ID } from '../constants'
 
-class CreateLink extends Component {
+class CreateComplaint extends Component {
   state = {
     description: '',
     url: ''
@@ -20,17 +20,17 @@ class CreateLink extends Component {
             value={this.state.description}
             onChange={(e) => this.setState({ description: e.target.value })}
             type='text'
-            placeholder='A description for the link'
+            placeholder='A description for the complaint'
           />
           <input
             className='mb2'
             value={this.state.url}
             onChange={(e) => this.setState({ url: e.target.value })}
             type='text'
-            placeholder='The URL for the link'
+            placeholder='The URL for the complaint'
           />
           <button
-            onClick={() => this._createLink()}
+            onClick={() => this._createComplaint()}
           >
             Submit
           </button>
@@ -39,7 +39,7 @@ class CreateLink extends Component {
     )
   }
 
-  _createLink = async () => {
+  _createComplaint = async () => {
     const postedById = localStorage.getItem(GC_USER_ID)
     if (!postedById) {
       console.error('No user logged in')
@@ -49,7 +49,7 @@ class CreateLink extends Component {
       description,
       url
     } = this.state
-    await this.props.createLinkMutation({
+    await this.props.createComplaintMutation({
       variables: {
         description,
         url,
@@ -60,9 +60,9 @@ class CreateLink extends Component {
   }
 }
 
-const CREATE_LINK_MUTATION = gql`
-  mutation CreateLinkMutation($description: String!, $url: String!, $postedById: ID!) {
-    createLink(
+const CREATE_COMPLAINT_MUTATION = gql`
+  mutation CreateComplaintMutation($description: String!, $url: String!, $postedById: ID!) {
+    createComplaint(
       description: $description,
       url: $url,
       postedById: $postedById
@@ -80,6 +80,6 @@ const CREATE_LINK_MUTATION = gql`
 `
 
 export default graphql(
-  CREATE_LINK_MUTATION,
-  { name: 'createLinkMutation' }
-)(CreateLink)
+  CREATE_COMPLAINT_MUTATION,
+  { name: 'createComplaintMutation' }
+)(CreateComplaint)

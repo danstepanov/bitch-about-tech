@@ -1,7 +1,7 @@
 # project: cj7jmvhsk08g001569gnwdhhg
 # version: 4
 
-type Link implements Node {
+type Complaint implements Node {
   url: String!
   description: String!
   createdAt: DateTime!
