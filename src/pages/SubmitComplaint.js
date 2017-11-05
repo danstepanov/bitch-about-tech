@@ -83,11 +83,10 @@ export default enhance(({
         type='text'
         placeholder='A title for the complaint'
       />
-      <input
+      <textarea
         className='mb2'
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        type='text'
         placeholder='An optional description for the complaint'
       />
       <input
