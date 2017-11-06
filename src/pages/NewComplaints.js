@@ -1,31 +1,8 @@
 import React from 'react';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import { compose, setDisplayName } from 'recompose';
 import ComplaintList from '../components/ComplaintList';
-
-const NewComplaintsQuery = gql`
-  query NewComplaintsQuery {
-    complaints: allComplaints(
-      orderBy: createdAt_DESC
-    ) {
-      id
-      createdAt
-      description
-      postedBy {
-        id
-        name
-      }
-      title
-      url
-      votes {
-        id
-        user {
-          id
-        }
-      }
-    }
-  }
-`
+import NewComplaintsQuery from '../graphql/queries/NewComplaints';
 
 const enhance = compose(
   setDisplayName('NewComplaintsPage'),
