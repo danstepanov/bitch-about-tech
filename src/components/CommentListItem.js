@@ -1,5 +1,5 @@
 import React from 'react';
-import { compose, setDisplayName } from 'recompose';
+import { setDisplayName } from 'recompose';
 import { timeDifferenceForDate } from '../utils';
 
 const enhance = setDisplayName('CommentListItem');

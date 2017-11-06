@@ -1,5 +1,5 @@
 import React from 'react';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import { compose, setDisplayName } from 'recompose';
 import ComplaintList from '../components/ComplaintList';
 import NewComplaintsQuery from '../graphql/queries/NewComplaints';

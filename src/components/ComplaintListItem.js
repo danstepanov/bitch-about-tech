@@ -27,6 +27,8 @@ export const ComplaintListItemFragment = gql`
         id
       }
     }
+    _commentsMeta { count }
+    _votesMeta { count }
   }
 `;
 
@@ -112,7 +114,7 @@ export default enhance(({
           ({complaint.url})
         </div>
         <div className='f6 lh-copy gray'>
-          {complaint.votes.length} votes | by {complaint.postedBy ? complaint.postedBy.name: 'Anonymous'} {timeDifferenceForDate(complaint.createdAt)}
+          {complaint._votesMeta.count} votes | {complaint._commentsMeta.count} comments | by {complaint.postedBy ? complaint.postedBy.name: 'Anonymous'} {timeDifferenceForDate(complaint.createdAt)}
         </div>
       </div>
     </div>
