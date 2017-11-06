@@ -45,7 +45,9 @@ const enhance = compose(
       history,
       title,
       url,
-    }) => async () => {
+    }) => async (e) => {
+      e.preventDefault();
+
       const userId = localStorage.getItem(LOCALSTORAGE_KEY_USER_ID);
 
       if (!userId) {
@@ -79,7 +81,10 @@ export default enhance(({
   userId,
 }) => (
   <div>
-    <div className='flex flex-column mt3'>
+    <form 
+      className='flex flex-column mt3'
+      onSubmit={createComplaint}
+    >
       <input
         className='mb2'
         value={title}
@@ -105,9 +110,9 @@ export default enhance(({
           Create account (goes here)
         </div>
       )}
-      <button onClick={createComplaint}>
+      <button type="submit">
         Submit
       </button>
-    </div>
+    </form>
   </div>
 ));

@@ -2,6 +2,9 @@ import { gql, graphql } from 'react-apollo';
 import React from 'react';
 import { compose, setDisplayName } from 'recompose';
 import ComplaintListItem from '../components/ComplaintListItem';
+import CommentComposer from '../components/CommentComposer';
+import CommentList from '../components/CommentList';
+import ComplaintCommentsQuery from '../graphql/queries/ComplaintComments';
 
 const ComplaintQuery = gql`
   query ComplaintQuery($complaintId: ID!) {
@@ -35,9 +38,18 @@ const enhance = compose(
       },
     }),
   }),
+  graphql(ComplaintCommentsQuery, {
+    name: 'commentsQuery',
+    options: ({ match: { params } }) => ({
+      variables: {
+        complaintId: params.complaintId,
+      },
+    }),
+  }),
 )
 
 export default enhance(({
+  commentsQuery = {},
   complaintQuery = {},
 }) => {
   if (complaintQuery.loading) {
@@ -54,7 +66,19 @@ export default enhance(({
   return (
     <div>
       <ComplaintListItem complaint={complaint} />
-      <div style={{ marginTop: 20 }}>{complaint.description}</div>
+      <div style={{ marginTop: 20 }}>
+        {complaint.description}
+      </div>
+      <CommentComposer
+        complaintId={complaint.id}
+      />
+      {!!commentsQuery.comments && (
+        <div style={{ marginTop: 20 }}>
+          <CommentList
+            comments={commentsQuery.comments}
+          />
+        </div>
+      )}
     </div>
   );
 });
