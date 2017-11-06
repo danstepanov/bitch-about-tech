@@ -1,6 +1,7 @@
 {
   "name": "hackernews-react-apollo",
   "version": "0.1.0",
+  "homepage": "http://bitchabouttech.com/build",
   "private": true,
   "dependencies": {
     "react": "^15.6.1",

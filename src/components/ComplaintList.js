@@ -9,12 +9,15 @@ export default enhance(({
   complaints,
 }) => (
   <div>
-    {complaints.map(complaint => (
+    {complaints.map((complaint, index) => (
       <Link
         key={complaint.id}
         to={`/complaints/${complaint.id}`}
       >
-        <ComplaintListItem complaint={complaint} />
+        <ComplaintListItem
+          complaint={complaint}
+          index={index}
+        />
       </Link>
     ))}
   </div>

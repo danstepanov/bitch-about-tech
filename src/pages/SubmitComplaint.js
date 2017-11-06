@@ -32,6 +32,7 @@ const CreateComplaintMutation = gql`
 const enhance = compose(
   setDisplayName('SubmitComplaintPage'),
   graphql(CreateComplaintMutation, {
+    options: { refetchQueries: ['NewComplaintsQuery'] },
     name: 'createComplaintMutation',
   }),
   withState('description', 'setDescription'),

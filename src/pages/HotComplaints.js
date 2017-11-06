@@ -9,8 +9,18 @@ const HotComplaintsQuery = gql`
       id
       createdAt
       description
+      postedBy {
+        id
+        name
+      }
       title
       url
+      votes {
+        id
+        user {
+          id
+        }
+      }
     }
   }
 `
