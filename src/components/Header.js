@@ -30,7 +30,7 @@ export default enhance(({
   signOut,
   userId,
 }) => (
-  <div className='flex pa1 justify-between nowrap orange'>
+  <div className='flex pa1 justify-between nowrap red'>
     <div className='flex flex-fixed black'>
       <Link to='/' className='ml1 no-underline black'>
         <div className='fw7 mr1'>Bitch About Tech</div>
