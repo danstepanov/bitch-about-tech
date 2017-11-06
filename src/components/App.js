@@ -6,7 +6,6 @@ import HotComplaints from '../pages/HotComplaints';
 import NewComplaints from '../pages/NewComplaints';
 import SignIn from '../pages/SignIn';
 import SubmitComplaint from '../pages/SubmitComplaint'
-import ComplaintList from './ComplaintList';
 import Header from './Header';
 
 const enhance = setDisplayName('App');

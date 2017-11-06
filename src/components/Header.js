@@ -5,7 +5,6 @@ import {
   compose,
   setDisplayName,
   withHandlers,
-  withProps,
 } from 'recompose';
 import {
   LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN,

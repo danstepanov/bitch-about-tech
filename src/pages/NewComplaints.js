@@ -1,6 +1,5 @@
 import React from 'react';
 import { gql, graphql } from 'react-apollo';
-import { Link } from 'react-router-dom';
 import { compose, setDisplayName } from 'recompose';
 import ComplaintList from '../components/ComplaintList';
 
@@ -40,5 +39,5 @@ export default enhance(({
     <ComplaintList
       complaints={newComplaintsQuery.complaints}
     />
-  );  
+  );
 });
