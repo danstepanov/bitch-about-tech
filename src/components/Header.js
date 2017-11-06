@@ -11,13 +11,12 @@ import {
   LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN,
   LOCALSTORAGE_KEY_USER_ID,
 } from '../constants';
+import withUserId from '../enhancers/withUserId';
 
 const enhance = compose(
   setDisplayName('Header'),
   withRouter,
-  withProps({
-    userId: localStorage.getItem(LOCALSTORAGE_KEY_USER_ID),
-  }),
+  withUserId('userId'),
   withHandlers({
     signOut: ({ history }) => () => {
       localStorage.removeItem(LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN);

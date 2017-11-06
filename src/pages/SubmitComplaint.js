@@ -2,6 +2,7 @@ import React from 'react';
 import { gql, graphql } from 'react-apollo';
 import { compose, setDisplayName, withHandlers, withState } from 'recompose';
 import { LOCALSTORAGE_KEY_USER_ID } from '../constants';
+import withUserId from '../enhancers/withUserId';
 
 const CreateComplaintMutation = gql`
   mutation CreateComplaintMutation(
@@ -63,6 +64,7 @@ const enhance = compose(
       history.push('/');
     }
   }),
+  withUserId('userId'),
 );
 
 export default enhance(({
@@ -73,6 +75,7 @@ export default enhance(({
   setURL,
   title,
   url,
+  userId,
 }) => (
   <div>
     <div className='flex flex-column mt3'>
@@ -96,6 +99,11 @@ export default enhance(({
         type='text'
         placeholder='The URL for the complaint'
       />
+      {!userId && (
+        <div>
+          Create account (goes here)
+        </div>
+      )}
       <button onClick={createComplaint}>
         Submit
       </button>
