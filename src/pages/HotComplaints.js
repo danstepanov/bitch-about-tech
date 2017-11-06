@@ -47,5 +47,5 @@ export default enhance(({
     <ComplaintList
       complaints={hotComplaintsQuery.complaints}
     />
-  );  
+  );
 });

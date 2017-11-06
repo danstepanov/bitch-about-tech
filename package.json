@@ -1,5 +1,6 @@
 {
   "name": "hackernews-react-apollo",
+  "homepage": "http://bitchabouttech.com",
   "version": "0.1.0",
   "homepage": "http://bitchabouttech.com/build",
   "private": true,
@@ -16,6 +17,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy" : "yarn run build&&gh-pages -d build"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.0.0"
   }
 }
