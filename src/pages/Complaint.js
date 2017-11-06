@@ -1,31 +1,18 @@
 import { gql, graphql } from 'react-apollo';
 import React from 'react';
 import { compose, setDisplayName } from 'recompose';
-import ComplaintListItem from '../components/ComplaintListItem';
 import CommentComposer from '../components/CommentComposer';
 import CommentList from '../components/CommentList';
+import ComplaintListItem, { ComplaintListItemFragment } from '../components/ComplaintListItem';
 import ComplaintCommentsQuery from '../graphql/queries/ComplaintComments';
 
 const ComplaintQuery = gql`
   query ComplaintQuery($complaintId: ID!) {
     complaint: Complaint(id: $complaintId) {
-      id
-      createdAt
-      description
-      postedBy {
-        id
-        name
-      }
-      title
-      url
-      votes {
-        id
-        user {
-          id
-        }
-      }
+      ...ComplaintListItemFragment
     }
   }
+  ${ComplaintListItemFragment}
 `;
 
 const enhance = compose(
