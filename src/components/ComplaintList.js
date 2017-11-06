@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { setDisplayName } from 'recompose';
 import ComplaintListItem from './ComplaintListItem';
 
@@ -10,15 +9,11 @@ export default enhance(({
 }) => (
   <div>
     {complaints.map((complaint, index) => (
-      <Link
+      <ComplaintListItem
+        complaint={complaint}
+        index={index}
         key={complaint.id}
-        to={`/complaints/${complaint.id}`}
-      >
-        <ComplaintListItem
-          complaint={complaint}
-          index={index}
-        />
-      </Link>
+      />
     ))}
   </div>
 ));

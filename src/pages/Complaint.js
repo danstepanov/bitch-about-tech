@@ -5,11 +5,22 @@ import ComplaintListItem from '../components/ComplaintListItem';
 
 const ComplaintQuery = gql`
   query ComplaintQuery($complaintId: ID!) {
-    Complaint(id: $complaintId) {
+    complaint: Complaint(id: $complaintId) {
       id
+      createdAt
       description
+      postedBy {
+        id
+        name
+      }
       title
       url
+      votes {
+        id
+        user {
+          id
+        }
+      }
     }
   }
 `;
@@ -38,7 +49,7 @@ export default enhance(({
     return <div>Error</div>;
   }
 
-  const complaint = complaintQuery.Complaint;
+  const { complaint } = complaintQuery;
 
   return (
     <div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { gql, graphql } from 'react-apollo';
+import { Link } from 'react-router-dom';
 import {
   compose,
   setDisplayName,
@@ -18,18 +19,6 @@ const CreateVoteMutation = gql`
       userId: $userId
     ) {
       id
-      complaint {
-        id
-        votes {
-          id
-          user {
-            id
-          }
-        }
-      }
-      user {
-        id
-      }
     }
   }
 `;
@@ -80,11 +69,26 @@ export default enhance(({
     <div className='flex mt2 items-start'>
       <div className='flex items-center'>
         <span className='gray'>{index + 1}.</span>
-        {userId && <div className='ml1 gray f11' onClick={voteForComplaint}>▲</div>}
+        {userId && (
+          <a
+            className='ml1 gray f11'
+            onClick={voteForComplaint}
+            style={{ cursor: 'pointer' }}
+          >
+            ▲
+          </a>
+        )}
       </div>
       <div className='ml1'>
-        <div>{complaint.title} ({complaint.url})</div>
-        <div className='f6 lh-copy gray'>{complaint.votes.length} votes | by {complaint.postedBy ? complaint.postedBy.name: 'Anonymous'} {timeDifferenceForDate(complaint.createdAt)}</div>
+        <Link to={`/complaints/${complaint.id}`}>
+          {complaint.title}
+        </Link>
+        <div className='f6 lh-copy gray'>
+          ({complaint.url})
+        </div>
+        <div className='f6 lh-copy gray'>
+          {complaint.votes.length} votes | by {complaint.postedBy ? complaint.postedBy.name: 'Anonymous'} {timeDifferenceForDate(complaint.createdAt)}
+        </div>
       </div>
     </div>
   </div>
