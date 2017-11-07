@@ -20,7 +20,6 @@ const enhance = compose(
     signOut: ({ history }) => () => {
       localStorage.removeItem(LOCALSTORAGE_KEY_AUTHENTICATION_TOKEN);
       localStorage.removeItem(LOCALSTORAGE_KEY_USER_ID);
-
       history.push('/');
     }
   }),
@@ -35,9 +34,9 @@ export default enhance(({
       <Link to='/' className='ml1 no-underline black'>
         <div className='fw7 mr1'>Bitch About Tech</div>
       </Link>
-      <Link to='/new' className='ml1 no-underline black'>
-        new
-      </Link>
+      <Link to='/new' className='ml1 no-underline black'>new</Link>
+      <div className='ml1'>|</div>
+      <Link to='/search' className='ml1 no-underline black'>search</Link>
       <div className='ml1'>|</div>
       <Link to='/submit' className='ml1 no-underline black'>submit</Link>
     </div>
