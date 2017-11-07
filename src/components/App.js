@@ -7,6 +7,7 @@ import NewComplaints from '../pages/NewComplaints';
 import SignIn from '../pages/SignIn';
 import SubmitComplaint from '../pages/SubmitComplaint'
 import Header from './Header';
+import Search from './Search';
 
 const enhance = setDisplayName('App');
 
@@ -18,6 +19,7 @@ export default enhance(() => (
         <Route exact path='/' component={HotComplaints} />
         <Route exact path='/complaints/:complaintId' component={Complaint} />
         <Route exact path='/new' component={NewComplaints} />
+        <Route exact path='/search' component={Search}/>
         <Route exact path='/sign-in' component={SignIn} />
         <Route exact path='/submit' component={SubmitComplaint} />
       </Switch>

@@ -1,7 +1,7 @@
-import { isNumber } from 'lodash';
 import React from 'react';
 import { gql, graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
+import { isNumber } from 'lodash';
 import {
   compose,
   setDisplayName,
