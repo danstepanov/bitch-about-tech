@@ -87,7 +87,7 @@ export default enhance(({
   index,
   userId,
   voteForComplaint,
-}) => { console.log('complaint:', complaint); return (
+}) => (
   <div>
     <div className='flex mt2 items-start'>
       <div className='flex items-center'>
@@ -119,4 +119,4 @@ export default enhance(({
       </div>
     </div>
   </div>
-)});
+));
