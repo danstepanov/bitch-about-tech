@@ -12,7 +12,7 @@ import registerServiceWorker from './registerServiceWorker'
 import './styles/index.css'
 
 const networkInterface = createNetworkInterface({
-  uri: 'https://api.graph.cool/simple/v1/cj7jmvhsk08g001569gnwdhhg',
+  uri: 'https://api.graph.cool/simple/v1/bitchabouttech',
 });
 
 networkInterface.use([{
