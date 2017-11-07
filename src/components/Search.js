@@ -7,7 +7,7 @@ import {
   withHandlers,
   withState,
 } from 'recompose';
-import ComplaintListItem from './ComplaintListItem';
+import ComplaintListItem, { ComplaintListItemFragment } from './ComplaintListItem';
 
 const ALL_COMPLAINTS_SEARCH_QUERY = gql`
   query AllComplaintsSearchQuery($searchText: String!) {
@@ -18,24 +18,11 @@ const ALL_COMPLAINTS_SEARCH_QUERY = gql`
         description_contains: $searchText
       }]
     }) {
-      id
-      url
-      description
-      createdAt
-      postedBy {
-        id
-        name
-      }
-      votes {
-        id
-        user {
-          id
-        }
-      }
+      ...ComplaintListItemFragment
     }
   }
+  ${ComplaintListItemFragment}
 `;
-
 const enhance = compose(
   setDisplayName('Search'),
   withState('complaints', 'setComplaints', []),
