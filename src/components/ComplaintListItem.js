@@ -51,8 +51,7 @@ const enhance = compose(
   graphql(CreateVoteMutation, {
     options: {
       refetchQueries: [
-        'HotComplaintsQuery',
-        'NewComplaintsQuery',
+        'AllComplaintsQuery',
       ],
     },
     name: 'createVoteMutation',

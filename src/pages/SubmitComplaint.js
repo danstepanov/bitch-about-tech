@@ -32,7 +32,7 @@ const CreateComplaintMutation = gql`
 const enhance = compose(
   setDisplayName('SubmitComplaintPage'),
   graphql(CreateComplaintMutation, {
-    options: { refetchQueries: ['NewComplaintsQuery'] },
+    options: { refetchQueries: ['AllComplaintsQuery'] },
     name: 'createComplaintMutation',
   }),
   withState('description', 'setDescription'),
@@ -81,7 +81,7 @@ export default enhance(({
   userId,
 }) => (
   <div>
-    <form 
+    <form
       className='flex flex-column mt3'
       onSubmit={createComplaint}
     >

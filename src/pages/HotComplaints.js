@@ -2,11 +2,11 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import { compose, setDisplayName } from 'recompose';
 import ComplaintList from '../components/ComplaintList';
-import HotComplaintsQuery from '../graphql/queries/HotComplaints';
+import AllComplaintsQuery from '../graphql/queries/AllComplaints';
 
 const enhance = compose(
-  setDisplayName('HotComplaintsPage'),
-  graphql(HotComplaintsQuery, {
+  setDisplayName('AllComplaintsPage'),
+  graphql(AllComplaintsQuery, {
     name: 'hotComplaintsQuery',
   }),
 );

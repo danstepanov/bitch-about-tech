@@ -1,10 +1,12 @@
 import { gql } from 'react-apollo';
 import { ComplaintListItemFragment } from '../../components/ComplaintListItem';
-
+// createdAt_DESC
 export default gql`
-  query NewComplaintsQuery {
+  query AllComplaintsQuery(
+    $orderBy: ComplaintOrderBy
+  ) {
     complaints: allComplaints(
-      orderBy: createdAt_DESC
+      orderBy: $orderBy
     ) {
       ...ComplaintListItemFragment
     }
